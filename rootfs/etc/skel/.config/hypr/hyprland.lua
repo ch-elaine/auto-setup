@@ -24,6 +24,12 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("systemctl --user start hyprpolkitagent")
 end)
 
+-- VS Code (and other Electron/Chromium apps) move into their own systemd scope outside
+-- this session, so after an exit they'd keep running with no window. Stop them on exit.
+hl.on("hyprland.shutdown", function()
+    hl.exec_cmd("systemctl --user stop 'app-*.scope'")
+end)
+
 -- Launcher (every app starts from here) + screenshots
 hl.bind(mod .. " + space", hl.dsp.exec_cmd("wofi --show drun"))
 hl.bind("ALT + SHIFT + 4", hl.dsp.exec_cmd("hyprshot -z -m region -o ~/Pictures/Screenshots"))  -- freeze, select, save + copy
@@ -32,7 +38,7 @@ hl.bind("ALT + SHIFT + 4", hl.dsp.exec_cmd("hyprshot -z -m region -o ~/Pictures/
 hl.bind(mod .. " + Q",         hl.dsp.window.close())  -- asks the app to quit
 hl.bind(mod .. " + SHIFT + Q", hl.dsp.window.kill())   -- force quit (SIGKILL) for hung apps
 hl.bind(mod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mod .. " + M", hl.dsp.exit())
+hl.bind(mod .. " + SHIFT + M", hl.dsp.exit())          -- log out (chord, so it isn't hit by accident)
 hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 for _, dir in ipairs({ "left", "right", "up", "down" }) do
