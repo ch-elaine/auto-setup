@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Short entry point for the Arch ISO, served by GitHub Pages:
+#   curl -fL ch-elaine.github.io/auto-setup/arch | bash
+# Downloads the repo (arch-install.sh needs packages.txt and rootfs/ next to it)
+# and starts arch-install.sh reading the keyboard, not this pipe, for its prompts.
+set -euo pipefail
+
+main() {   # a function, so nothing runs until the whole file has downloaded
+    rm -rf /root/auto-setup && mkdir /root/auto-setup
+    curl -fL https://github.com/ch-elaine/auto-setup/archive/main.tar.gz \
+        | tar xz -C /root/auto-setup --strip-components=1
+    exec bash /root/auto-setup/arch-install.sh </dev/tty
+}
+main

@@ -1,8 +1,7 @@
 **Arch Linux:** boot the Arch ISO in UEFI mode and run:
 
 ```bash
-curl -L https://github.com/ch-elaine/personal-automations/archive/main.tar.gz | tar xz
-cd personal-automations-main && bash arch-install.sh
+curl -fL ch-elaine.github.io/auto-setup/arch | bash
 ```
 
 Pick the disk, type `ERASE` to confirm, and enter the passwords. Settings (hostname, user, timezone) are at the top of `arch-install.sh`.

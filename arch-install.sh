@@ -4,14 +4,14 @@
 #  Follows the order of the ArchWiki Installation guide.
 #
 #  Repo layout
+#    arch              short entry point (GitHub Pages): downloads the repo, runs this
 #    arch-install.sh   this script: disk, install, users, boot loader
 #    packages.txt      official packages (one pacstrap transaction)
 #    aur-setup.sh      yay + AUR packages, run inside the new system
 #    rootfs/           config files, copied 1:1 onto the new system's /
 #
 #  Run from the Arch ISO (booted in UEFI mode):
-#    curl -L https://github.com/ch-elaine/personal-automations/archive/main.tar.gz | tar xz
-#    cd personal-automations-main && bash arch-install.sh
+#    curl -fL ch-elaine.github.io/auto-setup/arch | bash
 #  !!! The selected disk is ERASED !!!
 # =============================================================================
 set -euo pipefail
