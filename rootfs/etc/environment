@@ -1,3 +1,7 @@
 # Read by pam_env at every login (TTY, sudo, Hyprland apps)
 EDITOR=nano
 VISUAL=nano
+# Mesa's compiled-shader cache (~/.cache/mesa_shader_cache), shared by every game and app.
+# The default 1 GB fills up and throws out older games' shaders, which then compile again
+# on the next load (e.g. CS2 maps).
+MESA_SHADER_CACHE_MAX_SIZE=10G
