@@ -1,9 +1,34 @@
 // ~/.config/waybar/config.jsonc (Waybar's built-in default targets Sway)
+// Icons: Material Design glyphs from ttf-nerd-fonts-symbols. Colours: style.css
 {
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
   "modules-right": ["pulseaudio", "bluetooth", "network", "tray"],
-  "pulseaudio": { "format": "VOL {volume}%", "on-click": "pavucontrol" },
-  "bluetooth": { "format": "BT {status}", "on-click": "blueman-manager" },
-  "network": { "format": "NET {ifname}", "format-disconnected": "offline", "on-click": "kitty nmtui" }
+  "clock": {
+    "format": "󰅐 {:%H:%M}",
+    "format-alt": "󰃭 {:%a %d %b}",                  // click to switch
+    "tooltip-format": "<tt>{calendar}</tt>"
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 muted",
+    "format-icons": { "default": ["󰕿", "󰖀", "󰕾"] },
+    "on-click": "pavucontrol"
+  },
+  "bluetooth": {
+    "format": "󰂯",
+    "format-off": "󰂲",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂱 {device_alias}",
+    "format-no-controller": "",                         // no adapter: hide the module
+    "on-click": "blueman-manager"
+  },
+  "network": {
+    "format-ethernet": "󰈀 {ifname}",
+    "format-wifi": "󰖩 {essid}",
+    "format-disconnected": "󰌙 offline",
+    "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+    "on-click": "kitty nmtui"
+  },
+  "tray": { "spacing": 8 }
 }

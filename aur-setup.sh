@@ -18,7 +18,9 @@ sudo -u "$1" bash -euc '
     git clone --depth 1 https://aur.archlinux.org/yay-bin.git /tmp/yay-bin
     cd /tmp/yay-bin && makepkg -si --noconfirm
     yay -Y --gendb && yay -Y --devel --save     # yay first-use setup (track -git packages)
-    for pkg in "$@"; do                         # one at a time: a failure only skips that package
-        yay -S --noconfirm --needed "$pkg" || echo "WARNING: $pkg failed — after reboot run: yay -S $pkg"
+    # One at a time: a failure only skips that package. --removemake drops the
+    # build-only deps afterwards (the font package alone pulls ~500 MB: clang, doxygen, ...)
+    for pkg in "$@"; do
+        yay -S --noconfirm --needed --removemake "$pkg" || echo "WARNING: $pkg failed — after reboot run: yay -S $pkg"
     done
 ' _ "${AUR_PACKAGES[@]}"

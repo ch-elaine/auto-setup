@@ -25,9 +25,13 @@ bluez bluez-utils blueman
 hyprland xdg-desktop-portal-hyprland xdg-desktop-portal-gtk hyprpolkitagent
 qt6-wayland waybar wofi mako hyprshot hyprpicker
 
+# Login screen: greetd + its terminal greeter tuigreet (no X server needed)
+greetd greetd-tuigreet
+
 # Snapshots: Timeshift (pulls in cronie) + xhost so its GUI can open on Wayland
 timeshift xorg-xhost
 
-# Apps, Docker, fonts (Windows 11 fonts come from aur-setup.sh), package-cache cleaner
+# Apps, Docker, fonts (Windows 11 fonts come from aur-setup.sh; Nerd Font symbols
+# = Waybar's icons), package-cache cleaner
 firefox kitty thunar docker docker-compose docker-buildx
-noto-fonts noto-fonts-emoji ttf-liberation pacman-contrib
+noto-fonts noto-fonts-emoji ttf-liberation ttf-nerd-fonts-symbols pacman-contrib

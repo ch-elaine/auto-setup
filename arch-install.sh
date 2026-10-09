@@ -121,7 +121,7 @@ arch-chroot /mnt /bin/bash -euc "
   useradd -m -G wheel,docker,gamemode -s /usr/bin/zsh $USERNAME
   usermod -s /usr/bin/zsh root
   bootctl install            # keeps the loader.conf copied from rootfs/
-  systemctl enable NetworkManager systemd-timesyncd systemd-boot-update bluetooth docker paccache.timer cronie
+  systemctl enable NetworkManager systemd-timesyncd systemd-boot-update bluetooth docker paccache.timer cronie greetd
 "
 printf 'root:%s\n%s:%s\n' "$ROOT_PASSWORD" "$USERNAME" "$USER_PASSWORD" | arch-chroot /mnt chpasswd
 

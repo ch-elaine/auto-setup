@@ -13,7 +13,7 @@ Pick the disk, type `ERASE` to confirm, and enter the passwords. Settings (hostn
 
 **Arch Linux**
 - Btrfs with Timeshift snapshots, systemd-boot with `linux-zen` and `linux-lts`
-- Hyprland, Waybar, zsh, PipeWire, Bluetooth
+- Hyprland with a greetd/tuigreet login screen, Waybar, zsh, PipeWire, Bluetooth
 - Steam, GameMode, Gamescope, MangoHud, AMD drivers and gaming kernel tweaks
 - Firefox, Kitty, Thunar, Docker
 

@@ -1,0 +1,38 @@
+/* ~/.config/waybar/style.css — dark bar, each module a rounded pill.
+   Colours: Catppuccin Mocha (base #1e1e2e, text #cdd6f4, accent blue #89b4fa) */
+* {
+  font-family: "Noto Sans", "Symbols Nerd Font";
+  font-size: 13px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: rgba(17, 17, 27, 0.85);
+  color: #cdd6f4;
+}
+
+#workspaces, #clock, #pulseaudio, #bluetooth, #network, #tray {
+  background: #1e1e2e;
+  border-radius: 8px;
+  margin: 4px 3px;
+  padding: 0 10px;
+}
+
+/* Workspace buttons: drop GTK's button look, highlight the active one */
+#workspaces { padding: 0 3px; }
+#workspaces button {
+  all: unset;
+  padding: 0 7px;
+  border-radius: 6px;
+  color: #6c7086;
+}
+#workspaces button:hover  { color: #cdd6f4; }
+#workspaces button.active { color: #11111b; background: #89b4fa; }
+#workspaces button.urgent { color: #11111b; background: #f38ba8; }
+
+#clock { color: #89b4fa; font-weight: bold; }
+
+/* Muted / off / offline fade out */
+#pulseaudio.muted, #bluetooth.off, #bluetooth.disabled, #network.disconnected {
+  color: #6c7086;
+}

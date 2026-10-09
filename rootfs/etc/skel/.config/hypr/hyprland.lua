@@ -16,16 +16,13 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("systemctl --user start hyprpolkitagent")
 end)
 
--- Apps
-hl.bind(mod .. " + Q", hl.dsp.exec_cmd("kitty"))
-hl.bind(mod .. " + B", hl.dsp.exec_cmd("firefox"))
-hl.bind(mod .. " + E", hl.dsp.exec_cmd("thunar"))
-hl.bind(mod .. " + R", hl.dsp.exec_cmd("wofi --show drun"))
-hl.bind(mod .. " + A", hl.dsp.exec_cmd("pavucontrol"))
+-- Launcher (every app starts from here) + screenshots
+hl.bind(mod .. " + space", hl.dsp.exec_cmd("wofi --show drun"))
 hl.bind("ALT + SHIFT + 4", hl.dsp.exec_cmd("hyprshot -z -m region -o ~/Pictures/Screenshots"))  -- freeze, select, save + copy
 
 -- Windows
-hl.bind(mod .. " + C", hl.dsp.window.close())
+hl.bind(mod .. " + Q",         hl.dsp.window.close())  -- asks the app to quit
+hl.bind(mod .. " + SHIFT + Q", hl.dsp.window.kill())   -- force quit (SIGKILL) for hung apps
 hl.bind(mod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mod .. " + M", hl.dsp.exit())
 hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
