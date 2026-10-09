@@ -57,16 +57,24 @@ mkfs.fat -F 32 "${PART[0]}"
 mkswap "${PART[1]}"
 mkfs.btrfs -f "${PART[2]}"
 
-# Btrfs subvolumes @ (/) and @home (/home) — the layout Timeshift expects
+# Btrfs subvolumes. @ (/) and @home (/home) are the layout Timeshift requires;
+# Timeshift snapshots only @. @log and @pkg keep logs and the package cache out
+# of snapshots: logs survive a rollback (to see what broke), and old packages
+# aren't pinned on disk by snapshots (ArchWiki: Timeshift).
 mount "${PART[2]}" /mnt
-btrfs subvolume create /mnt/@ /mnt/@home
+btrfs subvolume create /mnt/@ /mnt/@home /mnt/@log /mnt/@pkg
 umount /mnt
 
 # Mount (ESP root-only: avoids bootctl's "world-readable random seed" warning)
 mount -o "$BTRFS_OPTS,subvol=@" "${PART[2]}" /mnt
-mount --mkdir -o "$BTRFS_OPTS,subvol=@home" "${PART[2]}" /mnt/home
+for sv in home:@home var/log:@log var/cache/pacman/pkg:@pkg; do   # <mount point>:<subvolume>
+  mount --mkdir -o "$BTRFS_OPTS,subvol=${sv#*:}" "${PART[2]}" "/mnt/${sv%%:*}"
+done
 mount --mkdir -o fmask=0077,dmask=0077 "${PART[0]}" /mnt/boot
 swapon "${PART[1]}"
+# Plain dirs, so systemd won't create them as nested subvolumes inside @ —
+# those make Timeshift unable to delete snapshots (ArchWiki: Timeshift)
+mkdir -p /mnt/var/lib/machines /mnt/var/lib/portables
 
 
 # =============================================================================
@@ -100,7 +108,9 @@ cp -r rootfs/. /mnt/
 chmod 440 /mnt/etc/sudoers.d/wheel                         # mode sudo expects (git can't store it)
 cp /mnt/etc/skel/.zshrc /mnt/etc/skel/.nanorc /mnt/root/   # same shell/editor setup for root
 mkdir -p /mnt/etc/skel/Pictures/Screenshots               # hyprshot folder (git can't store empty dirs)
-sed -i "s/@ROOT_UUID@/$(blkid -s UUID -o value "${PART[2]}")/" /mnt/boot/loader/entries/*.conf
+# Fill in the root filesystem's UUID (boot entries + Timeshift's snapshot device)
+sed -i "s/@ROOT_UUID@/$(blkid -s UUID -o value "${PART[2]}")/" \
+    /mnt/boot/loader/entries/*.conf /mnt/etc/timeshift/timeshift.json
 # Bluetooth: tweak the packaged main.conf in place (faster reconnects + battery level)
 sed -i -E 's/^#?(FastConnectable|Experimental) *=.*/\1 = true/' /mnt/etc/bluetooth/main.conf
 
@@ -111,14 +121,14 @@ arch-chroot /mnt /bin/bash -euc "
   useradd -m -G wheel,docker,gamemode -s /usr/bin/zsh $USERNAME
   usermod -s /usr/bin/zsh root
   bootctl install            # keeps the loader.conf copied from rootfs/
-  systemctl enable NetworkManager systemd-timesyncd systemd-boot-update bluetooth docker paccache.timer
+  systemctl enable NetworkManager systemd-timesyncd systemd-boot-update bluetooth docker paccache.timer cronie
 "
 printf 'root:%s\n%s:%s\n' "$ROOT_PASSWORD" "$USERNAME" "$USER_PASSWORD" | arch-chroot /mnt chpasswd
 
 # AUR last & non-fatal, so a download problem can't leave the system unbootable
 install -m 700 aur-setup.sh /mnt/root/
 arch-chroot /mnt /root/aur-setup.sh "$USERNAME" \
-  || echo "WARNING: AUR step failed (see log). After reboot run: yay -S ttf-ms-win11-auto"
+  || echo "WARNING: yay setup failed (see log) — install yay and aur-setup.sh's packages after reboot"
 rm /mnt/root/aur-setup.sh
 
 cp /root/arch-install.log /mnt/var/log/

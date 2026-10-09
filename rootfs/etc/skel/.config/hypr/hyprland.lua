@@ -2,7 +2,7 @@
 -- Defaults/reference: /usr/share/hypr/hyprland.lua
 local mod = "SUPER"
 
--- Gigabyte M27Q: 1440p @ 144 Hz (needs DisplayPort), FreeSync in fullscreen games (vrr = 2)
+-- Gigabyte M27Q: 1440p @ 144 Hz (up to 170 Hz over DisplayPort), FreeSync in fullscreen games (vrr = 2)
 hl.monitor({ output = "", mode = "2560x1440@144", position = "0x0", scale = 1, vrr = 2 })
 
 hl.config({
@@ -46,6 +46,6 @@ hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO
 hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true })
 
 -- Fullscreen games skip vsync = lowest input latency (Hyprland's own example uses cs2).
--- steam_app_* covers Proton games. Below 170 fps FreeSync takes over instead.
+-- steam_app_* covers Proton games. Below the refresh rate FreeSync takes over instead.
 hl.window_rule({ name = "game-tearing", match = { class = "^(cs2|steam_app_.*)$" }, immediate = true })
 hl.bind(mod .. " + F", hl.dsp.window.fullscreen())
