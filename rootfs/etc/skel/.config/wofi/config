@@ -1,0 +1,6 @@
+# ~/.config/wofi/config — app launcher (Super+Space); colours in style.css
+prompt=Search apps
+width=480
+height=360
+allow_images=true
+insensitive=true

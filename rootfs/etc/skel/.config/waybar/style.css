@@ -1,5 +1,5 @@
-/* ~/.config/waybar/style.css — dark bar, each module a rounded pill.
-   Colours: Catppuccin Mocha (base #1e1e2e, text #cdd6f4, accent blue #89b4fa) */
+/* ~/.config/waybar/style.css — trans pride theme: dark plum bar, rounded pills,
+   accents in the flag's colours (blue #5bcefa, pink #f5a9b8, white #ffffff) */
 * {
   font-family: "Noto Sans", "Symbols Nerd Font";
   font-size: 13px;
@@ -7,32 +7,42 @@
 }
 
 window#waybar {
-  background: rgba(17, 17, 27, 0.85);
-  color: #cdd6f4;
+  background: rgba(26, 22, 33, 0.85);
+  color: #fdf2f6;
 }
 
 #workspaces, #clock, #pulseaudio, #bluetooth, #network, #tray {
-  background: #1e1e2e;
+  background: #2a2233;
   border-radius: 8px;
   margin: 4px 3px;
   padding: 0 10px;
 }
 
-/* Workspace buttons: drop GTK's button look, highlight the active one */
+/* Workspace buttons: drop GTK's button look; the active one is a tiny trans flag */
 #workspaces { padding: 0 3px; }
 #workspaces button {
   all: unset;
   padding: 0 7px;
   border-radius: 6px;
-  color: #6c7086;
+  color: #8a7f96;
 }
-#workspaces button:hover  { color: #cdd6f4; }
-#workspaces button.active { color: #11111b; background: #89b4fa; }
-#workspaces button.urgent { color: #11111b; background: #f38ba8; }
+#workspaces button:hover  { color: #f5a9b8; }
+#workspaces button.active {
+  color: #1a1621;
+  font-weight: bold;
+  background-image: linear-gradient(to bottom,
+    #5bcefa 20%, #f5a9b8 20%, #f5a9b8 40%, #ffffff 40%,
+    #ffffff 60%, #f5a9b8 60%, #f5a9b8 80%, #5bcefa 80%);
+}
+#workspaces button.urgent { color: #1a1621; background: #ff7aa2; }
 
-#clock { color: #89b4fa; font-weight: bold; }
+/* The clock is the white stripe; the right side alternates blue and pink */
+#clock      { color: #ffffff; font-weight: bold; }
+#pulseaudio { color: #5bcefa; }
+#bluetooth  { color: #f5a9b8; }
+#network    { color: #5bcefa; }
 
 /* Muted / off / offline fade out */
 #pulseaudio.muted, #bluetooth.off, #bluetooth.disabled, #network.disconnected {
-  color: #6c7086;
+  color: #8a7f96;
 }

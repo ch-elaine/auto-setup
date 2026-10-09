@@ -1,8 +1,9 @@
 # Login screen: greetd runs tuigreet on tty1; logging in starts Hyprland.
 # tuigreet remembers the last user; F3 lists other sessions, F12 = shutdown/reboot.
+# Theme: closest console colours to the trans flag (the TTY only has 16 colours)
 [terminal]
 vt = 1
 
 [default_session]
-command = "tuigreet --time --remember --asterisks --theme 'border=blue;prompt=blue;button=blue' --cmd start-hyprland"
+command = "tuigreet --time --remember --asterisks --theme 'border=lightmagenta;prompt=lightcyan;time=lightcyan;button=lightmagenta' --cmd start-hyprland"
 user = "greeter"

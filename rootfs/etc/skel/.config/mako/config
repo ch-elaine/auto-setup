@@ -1,0 +1,10 @@
+# ~/.config/mako/config — notifications in the same trans pride colours as Waybar
+font=Noto Sans 11
+background-color=#1a1621f2
+text-color=#fdf2f6
+border-size=2
+border-color=#f5a9b8
+border-radius=10
+
+[urgency=high]
+border-color=#5bcefa

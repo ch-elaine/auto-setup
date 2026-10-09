@@ -1,0 +1,29 @@
+/* ~/.config/wofi/style.css — same trans pride colours as Waybar */
+* {
+  font-family: "Noto Sans";
+  font-size: 14px;
+}
+
+window {
+  background-color: rgba(26, 22, 33, 0.95);
+  border: 2px solid #f5a9b8;
+  border-radius: 12px;
+}
+
+#outer-box { padding: 10px; }
+
+#input {
+  margin-bottom: 8px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2a2233;
+  color: #fdf2f6;
+  box-shadow: none;
+}
+
+#entry { padding: 6px 10px; border-radius: 8px; }
+#entry:selected { background-image: linear-gradient(to right, #5bcefa, #f5a9b8); }
+
+#text { color: #fdf2f6; margin-left: 8px; }
+#text:selected { color: #1a1621; font-weight: bold; }

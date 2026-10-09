@@ -7,7 +7,15 @@ hl.monitor({ output = "", mode = "2560x1440@144", position = "0x0", scale = 1, v
 
 hl.config({
     input   = { kb_layout = "us", accel_profile = "flat" },  -- US keys, raw mouse input
-    general = { allow_tearing = true },                      -- master switch for the game rule at the bottom
+    general = {
+        allow_tearing = true,                                -- master switch for the game rule at the bottom
+        border_size   = 2,
+        col = {                                              -- trans flag gradient on the focused window
+            active_border   = { colors = { "rgba(5bcefaee)", "rgba(f5a9b8ee)", "rgba(ffffffee)",
+                                           "rgba(f5a9b8ee)", "rgba(5bcefaee)" }, angle = 45 },
+            inactive_border = "rgba(3a3044aa)",
+        },
+    },
     -- render = { direct_scanout = 2 },  -- even lower latency, but has black-screen bugs in some games
 })
 
