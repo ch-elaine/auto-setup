@@ -109,6 +109,10 @@ chmod 440 /mnt/etc/sudoers.d/wheel                         # mode sudo expects (
 cp /mnt/etc/skel/.zshrc /mnt/etc/skel/.nanorc /mnt/root/   # same shell/editor setup for root
 mkdir -p /mnt/etc/skel/Pictures/Screenshots /mnt/etc/skel/Videos   # hyprshot + OBS folders (git can't store empty dirs)
 sed -i "s|@HOME@|/home/$USERNAME|" /mnt/etc/skel/.config/obs-studio/basic/profiles/Untitled/basic.ini   # OBS wants an absolute path
+# Steam compiles Vulkan shaders in the background on every CPU thread of this PC.
+# Steam's first start unpacks next to this file and keeps it.
+install -D -m 644 /dev/stdin /mnt/etc/skel/.local/share/Steam/steam_dev.cfg \
+    <<< "unShaderBackgroundProcessingThreads $(nproc)"
 # Fill in the root filesystem's UUID (boot entries + Timeshift's snapshot device)
 sed -i "s/@ROOT_UUID@/$(blkid -s UUID -o value "${PART[2]}")/" \
     /mnt/boot/loader/entries/*.conf /mnt/etc/timeshift/timeshift.json
