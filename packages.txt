@@ -5,8 +5,8 @@
 base base-devel linux-zen linux-lts linux-firmware amd-ucode intel-ucode mkinitcpio
 btrfs-progs dosfstools networkmanager nano man-db man-pages git
 
-# Shell
-zsh zsh-autosuggestions zsh-syntax-highlighting
+# Shell (python runs neofetch's animated logo; neofetch itself is from the AUR)
+zsh zsh-autosuggestions zsh-syntax-highlighting python
 
 # RX 7800 XT: Mesa OpenGL/VA-API + RADV Vulkan, 64- and 32-bit (from [multilib])
 mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon

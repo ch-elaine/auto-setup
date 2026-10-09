@@ -6,6 +6,7 @@
 set -u
 AUR_PACKAGES=(
     ttf-ms-win11-auto    # Windows 11 fonts, extracted from Microsoft's Win11 evaluation ISO
+    neofetch             # no longer in the official repos; logo config in /etc/skel/.config/neofetch
     timeshift-autosnap   # Timeshift snapshot before every pacman upgrade. KEEP LAST: its
                          # pacman hook would otherwise snapshot every later install here
 )

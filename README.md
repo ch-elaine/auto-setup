@@ -15,6 +15,7 @@ Pick the disk, type `ERASE` to confirm, and enter the passwords. Settings (hostn
 - Hyprland with a greetd/tuigreet login screen, Waybar, zsh, PipeWire, Bluetooth
 - Steam, GameMode, Gamescope, MangoHud, AMD drivers and gaming kernel tweaks
 - Firefox, Kitty, Thunar, Docker
+- neofetch with `mysterious-shape.py` animated in place of the Arch logo (until Ctrl+C)
 
 **Windows 11**
 - Windows 11 Pro with `C:` (250 GB) and a `D:` data partition, most built-in apps removed
