@@ -54,3 +54,24 @@ hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_S
 -- steam_app_* covers Proton games. Below the refresh rate FreeSync takes over instead.
 hl.window_rule({ name = "game-tearing", match = { class = "^(cs2|steam_app_.*)$" }, immediate = true })
 hl.bind(mod .. " + F", hl.dsp.window.fullscreen())
+
+
+-- darkmode config
+-- for libadwaita gtk4 apps you can use this command:
+local gtk4_theme = "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"   -- for GTK4 apps
+    
+-- for gtk3 apps you need to install adw-gtk3 theme (in arch linux sudo pacman -S adw-gtk-theme)
+local gtk3_theme = "gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3'"   -- for GTK3 apps
+    
+-- for kde apps you need to install: sudo pacman -S qt5ct qt6ct kvantum kvantum breeze-icons   
+-- you will need to set dark theme for qt apps from kde more difficult thans with gnome :D:
+local env_qt_theme_var = "QT_QPA_PLATFORMTHEME"   -- for Qt apps# Them
+local qt_theme = "qt6ct"
+    
+hl.on("hyprland.start", function () 
+  hl.exec_cmd(gtk4_theme)
+  hl.exec_cmd(gtk3_theme)
+end)
+    
+hl.env(env_qt_theme_var, qt_theme)
+-- end dark mode config
