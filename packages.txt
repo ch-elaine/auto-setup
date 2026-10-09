@@ -14,6 +14,10 @@ mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon
 # Gaming (GameMode + Gamescope are the Gaming wiki's utilities)
 steam gamemode lib32-gamemode gamescope mangohud lib32-mangohud
 
+# Screen recording: OBS captures through xdg-desktop-portal-hyprland (below) and
+# encodes on the GPU with VA-API from mesa (game capture plugin: aur-setup.sh)
+obs-studio
+
 # Audio: PipeWire with PulseAudio/ALSA/JACK compatibility + mixer
 pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber pavucontrol
 

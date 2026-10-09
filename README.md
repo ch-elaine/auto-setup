@@ -14,7 +14,7 @@ Pick the disk, type `ERASE` to confirm, and enter the passwords. Settings (hostn
 - Btrfs with Timeshift snapshots, systemd-boot with `linux-zen` and `linux-lts`
 - Hyprland with a greetd/tuigreet login screen, Waybar, zsh, PipeWire, Bluetooth
 - Steam, GameMode, Gamescope, MangoHud, AMD drivers and gaming kernel tweaks
-- Firefox, Kitty, Thunar, Docker
+- Firefox, Kitty, Thunar, Docker, OBS (screen and game recording)
 - neofetch with `mysterious-shape.py` animated in place of the Arch logo (until Ctrl+C)
 
 **Windows 11**

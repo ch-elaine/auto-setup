@@ -22,6 +22,11 @@ hl.config({
 hl.on("hyprland.start", function()
     hl.exec_cmd("waybar")
     hl.exec_cmd("systemctl --user start hyprpolkitagent")
+    -- Screen capture (OBS, screen sharing) goes through xdg-desktop-portal-hyprland. It dies with
+    -- the previous Hyprland and systemd gives up restarting it while no compositor runs, so start
+    -- it fresh with this session's environment.
+    hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE DISPLAY;"
+        .. " systemctl --user reset-failed xdg-desktop-portal-hyprland; systemctl --user restart xdg-desktop-portal-hyprland")
 end)
 
 -- VS Code (and other Electron/Chromium apps) move into their own systemd scope outside
