@@ -107,7 +107,8 @@ echo "$HOST_NAME" > /mnt/etc/hostname
 cp -r rootfs/. /mnt/
 chmod 440 /mnt/etc/sudoers.d/wheel                         # mode sudo expects (git can't store it)
 cp /mnt/etc/skel/.zshrc /mnt/etc/skel/.nanorc /mnt/root/   # same shell/editor setup for root
-mkdir -p /mnt/etc/skel/Pictures/Screenshots               # hyprshot folder (git can't store empty dirs)
+mkdir -p /mnt/etc/skel/Pictures/Screenshots /mnt/etc/skel/Videos   # hyprshot + OBS folders (git can't store empty dirs)
+sed -i "s|@HOME@|/home/$USERNAME|" /mnt/etc/skel/.config/obs-studio/basic/profiles/Untitled/basic.ini   # OBS wants an absolute path
 # Fill in the root filesystem's UUID (boot entries + Timeshift's snapshot device)
 sed -i "s/@ROOT_UUID@/$(blkid -s UUID -o value "${PART[2]}")/" \
     /mnt/boot/loader/entries/*.conf /mnt/etc/timeshift/timeshift.json
@@ -121,7 +122,7 @@ arch-chroot /mnt /bin/bash -euc "
   useradd -m -G wheel,docker,gamemode -s /usr/bin/zsh $USERNAME
   usermod -s /usr/bin/zsh root
   bootctl install            # keeps the loader.conf copied from rootfs/
-  systemctl enable NetworkManager systemd-timesyncd systemd-boot-update bluetooth docker paccache.timer cronie greetd
+  systemctl enable NetworkManager systemd-timesyncd systemd-boot-update bluetooth docker paccache.timer cronie sddm
 "
 printf 'root:%s\n%s:%s\n' "$ROOT_PASSWORD" "$USERNAME" "$USER_PASSWORD" | arch-chroot /mnt chpasswd
 

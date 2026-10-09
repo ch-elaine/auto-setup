@@ -29,8 +29,9 @@ bluez bluez-utils blueman
 hyprland xdg-desktop-portal-hyprland xdg-desktop-portal-gtk hyprpolkitagent
 qt6-wayland waybar wofi mako hyprshot hyprpicker
 
-# Login screen: greetd + its terminal greeter tuigreet (no X server needed)
-greetd greetd-tuigreet
+# Login screen: SDDM, the login manager the Hyprland wiki lists first; its greeter
+# runs on Xorg (a dependency). Theme + config in rootfs/
+sddm
 
 # Snapshots: Timeshift (pulls in cronie) + xhost so its GUI can open on Wayland
 timeshift xorg-xhost

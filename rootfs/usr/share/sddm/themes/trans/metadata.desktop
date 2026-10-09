@@ -1,0 +1,9 @@
+[SddmGreeterTheme]
+Name=Trans
+Description=Login screen in the trans pride colours of Waybar, Wofi and Mako
+Type=sddm-theme
+Version=1.0
+MainScript=Main.qml
+Theme-Id=trans
+Theme-API=2.0
+QtVersion=6
