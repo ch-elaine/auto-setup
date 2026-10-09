@@ -1,0 +1,9 @@
+// ~/.config/waybar/config.jsonc (Waybar's built-in default targets Sway)
+{
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": ["pulseaudio", "bluetooth", "network", "tray"],
+  "pulseaudio": { "format": "VOL {volume}%", "on-click": "pavucontrol" },
+  "bluetooth": { "format": "BT {status}", "on-click": "blueman-manager" },
+  "network": { "format": "NET {ifname}", "format-disconnected": "offline", "on-click": "kitty nmtui" }
+}

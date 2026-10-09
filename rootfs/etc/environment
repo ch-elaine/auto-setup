@@ -1,0 +1,3 @@
+# Read by pam_env at every login (TTY, sudo, Hyprland apps)
+EDITOR=nano
+VISUAL=nano

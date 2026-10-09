@@ -1,0 +1,30 @@
+# Official packages, installed in one pacstrap transaction by arch-install.sh.
+# Comments (#) and blank lines are ignored; any spacing works.
+
+# Base (Installation guide: kernel, firmware, microcode, fs tools, network, editor, man pages)
+base base-devel linux-zen linux-lts linux-firmware amd-ucode intel-ucode mkinitcpio
+btrfs-progs dosfstools networkmanager nano man-db man-pages git
+
+# Shell
+zsh zsh-autosuggestions zsh-syntax-highlighting
+
+# RX 7800 XT: Mesa OpenGL/VA-API + RADV Vulkan, 64- and 32-bit (from [multilib])
+mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon
+
+# Gaming (GameMode + Gamescope are the Gaming wiki's utilities)
+steam gamemode lib32-gamemode gamescope mangohud lib32-mangohud
+
+# Audio: PipeWire with PulseAudio/ALSA/JACK compatibility + mixer
+pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber pavucontrol
+
+# Bluetooth
+bluez bluez-utils blueman
+
+# Hyprland desktop (gtk portal = file pickers; hyprshot = screenshots,
+# hyprpicker lets it freeze the screen while you select)
+hyprland xdg-desktop-portal-hyprland xdg-desktop-portal-gtk hyprpolkitagent
+qt6-wayland waybar wofi mako hyprshot hyprpicker
+
+# Apps, Docker, fonts (Windows 11 fonts come from aur-setup.sh), package-cache cleaner
+firefox kitty thunar docker docker-compose docker-buildx
+noto-fonts noto-fonts-emoji ttf-liberation pacman-contrib
