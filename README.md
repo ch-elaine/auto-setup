@@ -1,52 +1,24 @@
-# personal-automations
-
-A collection of small scripts and workflows I use to automate repetitive tasks in my day-to-day life.
-
-## What's inside
-
-| Automation | Description |
-|------------|-------------|
-| `example-script` | _Short description of what it does._ |
-
-## Getting started
-
-Clone the repo:
+**Arch Linux:** boot the Arch ISO in UEFI mode and run:
 
 ```bash
-git clone https://github.com/ch-elaine/personal-automations.git
-cd personal-automations
+curl -L https://github.com/ch-elaine/personal-automations/archive/main.tar.gz | tar xz
+cd personal-automations-main && bash arch-install.sh
 ```
 
-Install dependencies (adjust to the tools you actually use):
+Pick the disk, type `ERASE` to confirm, and enter the passwords. Settings (hostname, user, timezone) are at the top of `arch-install.sh`.
 
-```bash
-pip install -r requirements.txt
-```
+**Windows 11:** copy `windows/autounattend.xml` to the root of a Windows 11 install USB and boot from it. After the first sign-in, `PostInstall.ps1` runs on its own and restarts the PC once or twice.
 
-If an automation needs credentials or API keys, copy the example env file and fill in your own values:
+## What it installs and configures
 
-```bash
-cp .env.example .env
-```
+**Arch Linux**
+- Btrfs with Timeshift snapshots, systemd-boot with `linux-zen` and `linux-lts`
+- Hyprland, Waybar, zsh, PipeWire, Bluetooth
+- Steam, GameMode, Gamescope, MangoHud, AMD drivers and gaming kernel tweaks
+- Firefox, Kitty, Thunar, Docker
 
-Never commit your `.env` file. It is listed in `.gitignore`.
-
-## Usage
-
-Each automation lives in its own folder with a short note on how to run it. In general:
-
-```bash
-python <folder>/main.py
-```
-
-To run something on a schedule, use `cron` (macOS/Linux), Task Scheduler (Windows), or a GitHub Actions workflow in `.github/workflows/`.
-
-## Adding a new automation
-
-1. Create a new folder named after the task.
-2. Add the script and a short `README.md` explaining what it does and how to run it.
-3. Add a row to the table above.
-
-## License
-
-MIT. Feel free to borrow anything useful.
+**Windows 11**
+- Windows 11 Pro with `C:` (250 GB) and a `D:` data partition, most built-in apps removed
+- AMD Adrenalin driver, Steam, Discord, Firefox, Lightshot, Twinkle Tray, DirectX
+- WSL2 with Ubuntu, Docker Desktop
+- Removes Edge and Windows Defender, runs Win11Debloat
