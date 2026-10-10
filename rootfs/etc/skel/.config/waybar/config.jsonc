@@ -3,7 +3,11 @@
 {
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["pulseaudio", "bluetooth", "network", "tray"],
+  "modules-right": ["custom/sysmon", "pulseaudio", "bluetooth", "network", "tray"],
+  "custom/sysmon": {                                    // CPU / RAM / GPU load; hover = temps & details
+    "exec": "~/.config/waybar/scripts/sysmon.sh",       // long-running, prints JSON every 2 s
+    "return-type": "json"
+  },
   "clock": {
     "format": "󰅐 {:%H:%M}",
     "format-alt": "󰃭 {:%a %d %b}",                  // click to switch

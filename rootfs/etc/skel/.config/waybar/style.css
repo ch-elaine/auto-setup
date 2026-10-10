@@ -11,7 +11,7 @@ window#waybar {
   color: #fdf2f6;
 }
 
-#workspaces, #clock, #pulseaudio, #bluetooth, #network, #tray {
+#workspaces, #clock, #custom-sysmon, #pulseaudio, #bluetooth, #network, #tray {
   background: #2a2233;
   border-radius: 8px;
   margin: 4px 3px;
@@ -38,6 +38,7 @@ window#waybar {
 
 /* The clock is the white stripe; the right side alternates blue and pink */
 #clock      { color: #ffffff; font-weight: bold; }
+#custom-sysmon { color: #f5a9b8; }
 #pulseaudio { color: #5bcefa; }
 #bluetooth  { color: #f5a9b8; }
 #network    { color: #5bcefa; }
@@ -46,3 +47,15 @@ window#waybar {
 #pulseaudio.muted, #bluetooth.off, #bluetooth.disabled, #network.disconnected {
   color: #8a7f96;
 }
+
+/* System monitor lights up when CPU/GPU run hot (or RAM is nearly full) */
+#custom-sysmon.warning  { color: #1a1621; background: #ffb86c; }
+#custom-sysmon.critical { color: #1a1621; background: #ff7aa2; }
+
+/* Hover popups (system monitor, calendar, …) in the bar's colours */
+tooltip {
+  background: rgba(26, 22, 33, 0.95);
+  border: 1px solid #f5a9b8;
+  border-radius: 8px;
+}
+tooltip label { color: #fdf2f6; padding: 4px; }
